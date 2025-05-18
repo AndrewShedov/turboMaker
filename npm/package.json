@@ -1,0 +1,17 @@
+{
+    "name": "turbo-maker",
+    "version": "1.0.0",
+    "description": "data generator",
+    "main": "index.js",
+    "type": "module",
+    "author": {
+        "name": "Andrew Shedov",
+        "url": "https://shedov.top"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AndrewShedov/turboMaker.git"
+    },
+    "homepage": "https://github.com/AndrewShedov/turboMaker"
+}
