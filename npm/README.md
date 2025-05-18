@@ -4,4 +4,4 @@ data generator
 
 ## Installation
 
-npm install turbo-maker
+npm i turbo-maker
