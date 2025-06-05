@@ -13,5 +13,11 @@
         "type": "git",
         "url": "git+https://github.com/AndrewShedov/turboMaker.git"
     },
-    "homepage": "https://github.com/AndrewShedov/turboMaker"
+    "homepage": "https://github.com/AndrewShedov/turboMaker",
+    "dependencies": {
+        "mongodb": "^6.16.0"
+    },
+    "bin": {
+        "turbo-maker": "./index.js"
+    }
 }
