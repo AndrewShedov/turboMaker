@@ -2,16 +2,6 @@ import {
   parentPort,
   threadId
 } from 'worker_threads';
-// To work via npm link turbo-maker
-// import path from 'path';
-// import { pathToFileURL } from 'url';
-// /To work via npm link turbo-maker
-
-// To work via npm link turbo-maker
-// const mongoPath = pathToFileURL(
-//   path.resolve(process.cwd(), 'node_modules', 'mongodb/lib/index.js')
-// ).href;
-// /To work via npm link turbo-maker
 
 let
   from,
@@ -40,13 +30,7 @@ parentPort.on('message', async (data) => {
     const { generatingData: genFunc } = await import(generatingDataPath);
     generatingData = genFunc;
 
-    // To work via npm link turbo-maker
-    // const { MongoClient } = await import(mongoPath);
-    // /To work via npm link turbo-maker
-
-    // To work via npm i turbo-maker
     const { MongoClient } = await import('mongodb');
-    // To work via npm i turbo-maker
 
     const sharedArray = new Int32Array(sharedBuffer);
 
