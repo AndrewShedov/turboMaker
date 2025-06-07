@@ -7,9 +7,6 @@ import {
 // import { pathToFileURL } from 'url';
 // /To work via npm link turbo-maker
 
-console.log("🧩 Worker file loaded.");
-console.log("🧩 turboMaker-worker.js LOADED in:", process.cwd());
-
 // To work via npm link turbo-maker
 // const mongoPath = pathToFileURL(
 //   path.resolve(process.cwd(), 'node_modules', 'mongodb/lib/index.js')
@@ -40,8 +37,6 @@ parentPort.on('message', async (data) => {
   } = data);
 
   try {
-    console.log(`🧩 Worker #${threadId}: importing from`, generatingDataPath);
-    console.log(`🧩 batchSize #${batchSize}`);
     const { generatingData: genFunc } = await import(generatingDataPath);
     generatingData = genFunc;
 
@@ -54,13 +49,14 @@ parentPort.on('message', async (data) => {
     // To work via npm i turbo-maker
 
     const sharedArray = new Int32Array(sharedBuffer);
-    const baseTimestamp = Date.now();
 
+    const baseTimestamp = Date.now();
+    
     const client = new MongoClient(address);
     await client.connect();
-
     const dbName = client.db(db);
     const collectionName = dbName.collection(collection);
+
     const documentsToInsert = [];
 
     for (let i = from; i < to; i++) {

@@ -1,4 +1,4 @@
-export function validateConfig(config) {
+export function validate(config) {
     const requiredFields = [
         'numberThreads',
         'numberDocuments',

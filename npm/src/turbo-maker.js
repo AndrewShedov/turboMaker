@@ -43,7 +43,7 @@ export function runTurboMaker({
     const reset = '\x1b[0m';
     const bar = color + '█'.repeat(filledLength) + reset + '-'.repeat(barLength - filledLength);
     const percent = (progress * 100).toFixed(1).padStart(5, ' ');
-    process.stdout.write(`\r🎁 ${bar} ${percent}% | ${generated} | ${numberDocuments}`);
+    process.stdout.write(`\r🎁 ${bar} ${percent}% |${generated}|${numberDocuments}`);
   };
 
   const interval = setInterval(showProgress, 100);
@@ -59,9 +59,7 @@ export function runTurboMaker({
     const to = from + documentsPerThread + extra;
     current = to;
 
-    const worker = new Worker(resolve(dirname(fileURLToPath(import.meta.url)), 'turboMaker-worker.js'));
-
-    console.log(`🧩 Worker #${i} receives path:`, generatingDataPath);
+    const worker = new Worker(resolve(dirname(fileURLToPath(import.meta.url)), 'turbo-maker-worker.js'));
 
     worker.postMessage({ from, to, sharedBuffer, batchSize, address, db, collection, generatingDataPath });
     worker.on('message', (msg) => {
@@ -74,12 +72,16 @@ export function runTurboMaker({
           const durationSec = (end - start) / 1000;
           const speed = (numberDocuments / durationSec).toFixed(2);
           const perDocument = ((end - start) / numberDocuments).toFixed(5);
-          process.stdout.write('\n');
+          // process.stdout.write('\n');
+          console.log(`\n`);
           console.log(`✅ Successfully created: ${numberDocuments} documents.`);
           console.log(`⏱️ Creation time: ${(durationSec / 60).toFixed(6)} min.`);
           console.log(`⚡ Speed: ${speed} documents/sec.`);
-          console.log(`📊 Average time per document: ${perDocument} ms.`);
-          setTimeout(() => process.exit(0), 500);
+          console.log(`📊 Average time to create one document: ${perDocument} ms.`);
+          setTimeout(() => {
+            console.log("👋 Completion of work...");
+            process.exit(0);
+          }, 500);
         }
       }
     });

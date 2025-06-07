@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { runTurboMaker } from './turboMaker.js';
-import { validateConfig } from './validation/validateConfig.js';
+import { runTurboMaker } from './turbo-maker.js';
+import { validate } from './validation/validate-config.js';
 import path from 'path';
 import { pathToFileURL } from 'url';
 import process from 'process';
@@ -20,14 +20,11 @@ try {
 }
 
 try {
-  validateConfig(config);
+  validate(config);
 } catch (error) {
   console.error(error.message);
   process.exit(1);
 }
-
-console.log("📁 Path to generatingData:", generatingDataPath);
-console.log("💡 turbo-maker index.js is running");
 
 runTurboMaker({
   numberThreads: config.numberThreads,

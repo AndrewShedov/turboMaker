@@ -1,4 +1,4 @@
-# turbo-maker
+# turboMaker
 
 Data generator.<br/>
 The package is under development and testing.
