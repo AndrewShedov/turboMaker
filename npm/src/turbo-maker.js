@@ -23,17 +23,21 @@ export function runTurboMaker({
   const cpuModel = CPU[0].model;
   // /CPU info
 
-  // Calculate the number of threads to generate
+  // calculate the number of threads to generate
   const threads = (numberThreads > maxThreads) || (numberThreads <= 0) ? maxThreads : numberThreads;
-  // /Calculate the number of threads to generate
+  // /calculate the number of threads to generate
 
+  // shared buffer
   const sharedBuffer = new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * 2);
   const sharedArray = new Int32Array(sharedBuffer);
+  // /shared buffer
+
   const start = performance.now();
 
   console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads \n`);
   console.log(`🚀 Start with ${threads} threads and ${batchSize} batch.\n`);
 
+  // progress bar
   const showProgress = () => {
     const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
     const progress = generated / numberDocuments;
@@ -45,6 +49,7 @@ export function runTurboMaker({
     const percent = (progress * 100).toFixed(1).padStart(5, ' ');
     process.stdout.write(`\r🎁 ${bar} ${percent}% |${generated}|${numberDocuments}`);
   };
+  // /progress bar
 
   const interval = setInterval(showProgress, 100);
   let finished = 0;
