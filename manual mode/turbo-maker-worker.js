@@ -50,7 +50,7 @@ parentPort.on('message', async (data) => {
       // sentence: miniMaker.lorem.sentences({ min: 3, max: 6, wordMin: 5, wordMax: 12, hashtagMin: 20, hashtagMax: 20 }),
       user: new ObjectId(user),
       imageUrl: miniMaker.take.valueOne({ key: 'images.avatar' }),
-      liked: miniMaker.take.value({ key: 'users', duplicate: false, min: 3, max: 10, fromEnd: true }),
+      liked: miniMaker.take.value({ key: 'users', duplicate: false, min: 3, max: 10, reverse: true }),
       createdAt,
       updatedAt,
       // /post
