@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "data generator",
     "main": "src/index.js",
     "type": "module",
@@ -9,7 +9,6 @@
         "url": "https://shedov.top"
     },
     "license": "MIT",
-    "readme": "README.md",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/AndrewShedov/turboMaker.git"
