@@ -8,6 +8,7 @@ let
   to,
   sharedBuffer,
   batchSize,
+  timeStepMs,
   address,
   db,
   collection,
@@ -20,6 +21,7 @@ parentPort.on('message', async (data) => {
     to,
     sharedBuffer,
     batchSize,
+    timeStepMs,
     address,
     db,
     collection,
@@ -34,10 +36,6 @@ parentPort.on('message', async (data) => {
 
     const sharedArray = new Int32Array(sharedBuffer);
 
-    // single point of reference
-    const baseTimestamp = Date.now();
-    // /single point of reference
-
     const client = new MongoClient(address);
     await client.connect();
     const dbName = client.db(db);
@@ -45,14 +43,16 @@ parentPort.on('message', async (data) => {
 
     const documentsToInsert = [];
 
+    // single point of reference
+    const baseTimestamp = Date.now();
+    // /single point of reference
+
     for (let i = from; i < to; i++) {
 
-      // strictly global index
-      const globalIndex = Atomics.add(sharedArray, 1, 1);
-      // /strictly global index
-
-      const createdAt = new Date(baseTimestamp + globalIndex * 10000);
-      const updatedAt = new Date(createdAt.getTime() + 60000);
+      // create date
+      const createdAt = new Date(baseTimestamp + i * timeStepMs);
+      const updatedAt = createdAt;
+      // /create date
 
       const document = await generatingData({ createdAt, updatedAt });
       documentsToInsert.push(document);

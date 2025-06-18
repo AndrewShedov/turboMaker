@@ -30,6 +30,7 @@ runTurboMaker({
   numberThreads: config.numberThreads,
   numberDocuments: config.numberDocuments,
   batchSize: config.batchSize,
+  timeStepMs: config.timeStepMs,
   address: config.address,
   db: config.db,
   collection: config.collection,

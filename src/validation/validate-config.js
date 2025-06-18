@@ -3,6 +3,7 @@ export function validate(config) {
         'numberThreads',
         'numberDocuments',
         'batchSize',
+        'timeStepMs',
         'address',
         'db',
         'collection'

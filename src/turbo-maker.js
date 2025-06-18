@@ -2,30 +2,29 @@ import { Worker } from 'worker_threads';
 import { performance } from 'perf_hooks';
 import os from 'os';
 import { fileURLToPath } from 'url';
-import {
-  dirname,
-  resolve
-} from 'path';
+import { dirname, resolve } from 'path';
 
 export function runTurboMaker({
   numberThreads,
   numberDocuments,
   batchSize,
+  timeStepMs,
   address,
   db,
   collection,
   generatingDataPath
 }) {
 
-  // CPU info
+  // PC info
   const CPU = os.cpus();
   const maxThreads = CPU.length;
   const cpuModel = CPU[0].model;
-  // /CPU info
+  const totalMemory = os.totalmem();
+  // /PC info
 
-  // calculate the number of threads to generate
-  const threads = (numberThreads > maxThreads) || (numberThreads <= 0) ? maxThreads : numberThreads;
-  // /calculate the number of threads to generate
+  // calculate threads
+  const threads = ((numberThreads > maxThreads) || (numberThreads <= 0) || (typeof numberThreads === 'string')) ? maxThreads : numberThreads;
+  // calculate threads
 
   // shared buffer
   const sharedBuffer = new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * 2);
@@ -34,8 +33,37 @@ export function runTurboMaker({
 
   const start = performance.now();
 
-  console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads \n`);
-  console.log(`🚀 Start with ${threads} threads and ${batchSize} batch.\n`);
+  // start information
+  console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads`);
+  console.log(`   RAM: ${(totalMemory / (1024 ** 3)).toFixed(1)} GB`);
+  console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString()} documents | ${batchSize.toLocaleString()} batch | ${timeStepMs.toLocaleString()} timeStepMs\n`);
+  console.log('\n'); // reserved place for indicator
+  // /start information
+
+  // metrics
+  let prevCpuUsage = process.cpuUsage();
+
+  function getCpuUsage() {
+    const usage = process.cpuUsage(prevCpuUsage);
+    prevCpuUsage = process.cpuUsage();
+    const total = usage.user + usage.system;
+    const percent = (total / (1e6 * CPU.length)) * 100;
+    return percent.toFixed(1);
+  }
+
+  function getMemoryUsage() {
+    const used = process.memoryUsage().rss;
+    const percent = (used / totalMemory) * 100;
+    return percent.toFixed(1);
+  }
+  // /metrics
+
+  const clearLines = (n = 2) => {
+    for (let i = 0; i < n; i++) {
+      process.stdout.write('\x1b[1A');
+      process.stdout.write('\x1b[2K');
+    }
+  };
 
   // progress bar
   const showProgress = () => {
@@ -43,15 +71,19 @@ export function runTurboMaker({
     const progress = generated / numberDocuments;
     const barLength = 40;
     const filledLength = Math.min(barLength, Math.round(barLength * progress));
-    const color = '\x1b[32m';
-    const reset = '\x1b[0m';
-    const bar = color + '█'.repeat(filledLength) + reset + '-'.repeat(barLength - filledLength);
+    const bar = '\x1b[32m' + '█'.repeat(filledLength) + '\x1b[0m' + '-'.repeat(barLength - filledLength);
     const percent = (progress * 100).toFixed(1).padStart(5, ' ');
-    process.stdout.write(`\r🎁 ${bar} ${percent}% |${generated}|${numberDocuments}`);
+
+    const cpu = getCpuUsage().padStart(5, ' ');
+    const ram = getMemoryUsage().padStart(5, ' ');
+
+    clearLines(2);
+    console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString()} / ${numberDocuments.toLocaleString()}`);
+    console.log(`           CPU: ${cpu}% | RAM: ${ram}%`);
   };
   // /progress bar
 
-  const interval = setInterval(showProgress, 100);
+  const interval = setInterval(showProgress, 1000);
   let finished = 0;
 
   const documentsPerThread = Math.floor(numberDocuments / threads);
@@ -66,23 +98,54 @@ export function runTurboMaker({
 
     const worker = new Worker(resolve(dirname(fileURLToPath(import.meta.url)), 'turbo-maker-worker.js'));
 
-    worker.postMessage({ from, to, sharedBuffer, batchSize, address, db, collection, generatingDataPath });
+    worker.postMessage({
+      from,
+      to,
+      sharedBuffer,
+      batchSize,
+      timeStepMs,
+      address,
+      db,
+      collection,
+      generatingDataPath
+    });
+
     worker.on('message', (msg) => {
       if (msg === 'done') {
         finished++;
         if (finished === threads) {
           clearInterval(interval);
-          showProgress();
+          clearLines(2); // remove the indicator and metrics
+          const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
+          const progress = generated / numberDocuments;
+          const barLength = 40;
+          const filledLength = Math.min(barLength, Math.round(barLength * progress));
+          const bar = '\x1b[32m' + '█'.repeat(filledLength) + '\x1b[0m' + '-'.repeat(barLength - filledLength);
+          const percent = (progress * 100).toFixed(1).padStart(5, ' ');
+
+          console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString()} / ${numberDocuments.toLocaleString()}\n`);
+
           const end = performance.now();
-          const durationSec = (end - start) / 1000;
+          const durationMs = end - start;
+
+          const minutes = Math.floor(durationMs / 60000);
+          const seconds = Math.floor((durationMs % 60000) / 1000);
+          const milliseconds = Math.floor(durationMs % 1000);
+
+          let formattedDuration = '';
+          if (minutes > 0) formattedDuration += `${minutes} min `;
+          if (seconds > 0) formattedDuration += `${seconds} sec `;
+          formattedDuration += `${milliseconds} ms`;
+
+          const durationSec = durationMs / 1000;
           const speed = (numberDocuments / durationSec).toFixed(2);
-          const perDocument = ((end - start) / numberDocuments).toFixed(5);
-          // process.stdout.write('\n');
-          console.log(`\n`);
-          console.log(`✅ Successfully created: ${numberDocuments} documents.`);
-          console.log(`⏱️ Creation time: ${(durationSec / 60).toFixed(6)} min.`);
+          const perDocument = (durationMs / numberDocuments).toFixed(5);
+
+          console.log(`✅ Successfully created: ${numberDocuments.toLocaleString()} documents.`);
+          console.log(`⏱️ Creation time: ${formattedDuration}`);
           console.log(`⚡ Speed: ${speed} documents/sec.`);
-          console.log(`📊 Average time to create one document: ${perDocument} ms.`);
+          console.log(`📊 Average time per document: ${perDocument} ms`);
+
           setTimeout(() => {
             console.log("👋 Completion of work...");
             process.exit(0);
@@ -90,6 +153,7 @@ export function runTurboMaker({
         }
       }
     });
+
     worker.on('error', (error) => console.error(`❌ Worker error:`, error));
   }
 }
