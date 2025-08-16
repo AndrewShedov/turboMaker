@@ -4,7 +4,7 @@ export function validate(config) {
         'numberDocuments',
         'batchSize',
         'timeStepMs',
-        'address',
+        'uri',
         'db',
         'collection'
     ];

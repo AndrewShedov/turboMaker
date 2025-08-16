@@ -14,7 +14,7 @@ let config;
 try {
   ({ config } = await import(userConfigURL.href));
 } catch (error) {
-  console.error("❌ Failed to load config - turbo-maker.config.js");
+  console.error("❌ Failed to load - turbo-maker.config.js");
   console.error(error.message);
   process.exit(1);
 }
@@ -31,7 +31,7 @@ runTurboMaker({
   numberDocuments: config.numberDocuments,
   batchSize: config.batchSize,
   timeStepMs: config.timeStepMs,
-  address: config.address,
+  uri: config.uri,
   db: config.db,
   collection: config.collection,
   generatingDataPath: generatingDataPath

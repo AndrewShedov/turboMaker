@@ -9,7 +9,7 @@ let
   sharedBuffer,
   batchSize,
   timeStepMs,
-  address,
+  uri,
   db,
   collection,
   generatingDataPath,
@@ -22,7 +22,7 @@ parentPort.on('message', async (data) => {
     sharedBuffer,
     batchSize,
     timeStepMs,
-    address,
+    uri,
     db,
     collection,
     generatingDataPath
@@ -36,7 +36,7 @@ parentPort.on('message', async (data) => {
 
     const sharedArray = new Int32Array(sharedBuffer);
 
-    const client = new MongoClient(address);
+    const client = new MongoClient(uri);
     await client.connect();
     const dbName = client.db(db);
     const collectionName = dbName.collection(collection);

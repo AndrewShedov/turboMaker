@@ -9,7 +9,7 @@ export function runTurboMaker({
   numberDocuments,
   batchSize,
   timeStepMs,
-  address,
+  uri,
   db,
   collection,
   generatingDataPath
@@ -37,7 +37,10 @@ export function runTurboMaker({
   console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads`);
   console.log(`   RAM: ${(totalMemory / (1024 ** 3)).toFixed(1)} GB`);
   console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString()} documents | ${batchSize.toLocaleString()} batch | ${timeStepMs.toLocaleString()} timeStepMs\n`);
-  console.log('\n'); // reserved place for indicator
+  console.log(`🌐 URI:             ${uri}`);
+  console.log(`🗄️ Database:        ${db}`);
+  console.log(`📂 Collection:      ${collection}`);
+  console.log('\n');
   // /start information
 
   // metrics
@@ -104,7 +107,7 @@ export function runTurboMaker({
       sharedBuffer,
       batchSize,
       timeStepMs,
-      address,
+      uri,
       db,
       collection,
       generatingDataPath
