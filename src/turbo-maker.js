@@ -39,7 +39,7 @@ export function runTurboMaker({
   console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString()} documents | ${batchSize.toLocaleString()} batch | ${timeStepMs.toLocaleString()} timeStepMs\n`);
   console.log(`🌐 URI:             ${uri}`);
   console.log(`🗄️ Database:        ${db}`);
-  console.log(`📂 Collection:      ${collection}`);
+  console.log(`📂 Collection:      ${collection}\n`);
   console.log('\n');
   // /start information
 
