@@ -1,4 +1,4 @@
-import { miniMaker } from 'mini-maker';
+import { superMaker } from 'super-maker';
 import { ObjectId } from 'mongodb';
 
 export const config = {
@@ -13,7 +13,7 @@ export const config = {
 
 export async function generatingData({ createdAt, updatedAt }) {
 
-    const user = miniMaker.take.value({
+    const user = superMaker.take.value({
         key: 'users',
         fromEnd: true
     });
@@ -22,7 +22,7 @@ export async function generatingData({ createdAt, updatedAt }) {
         title,
         text,
         hashtagsFromFullText
-    } = miniMaker.lorem.fullText.generate({
+    } = superMaker.lorem.fullText.generate({
 
         titleOptions: {
             sentenceMin: 0,
@@ -49,11 +49,11 @@ export async function generatingData({ createdAt, updatedAt }) {
         text,
         hashtags: hashtagsFromFullText,
         user: new ObjectId(user),
-        mainImageUri: miniMaker.take.value({
+        mainImageUri: superMaker.take.value({
             key: 'images.banner'
         }),
         viewsCount: 1,
-        liked: miniMaker.take.values({
+        liked: superMaker.take.values({
             key: 'users',
             duplicate: false,
             min: 3,
@@ -67,14 +67,14 @@ export async function generatingData({ createdAt, updatedAt }) {
         // user
 
         // customId: randomBytes(16).toString("hex"),
-        // email: miniMaker.emailRandom(5),
+        // email: superMaker.emailRandom(5),
 
-        // name: miniMaker.take.value({
+        // name: superMaker.take.value({
         //     key: 'fullName',
         //     fromEnd: true
         // }),
 
-        // aboutMe: miniMaker.lorem.sentences({
+        // aboutMe: superMaker.lorem.sentences({
         //     sentenceMin: 3,
         //     sentenceMax: 6,
         //     wordMin: 5,
@@ -83,11 +83,11 @@ export async function generatingData({ createdAt, updatedAt }) {
         //     hashtagMax: 2
         // }),
 
-        // avatarUrl: miniMaker.take.value({
+        // avatarUrl: superMaker.take.value({
         //     key: 'images.avatar'
         // }),
 
-        // bannerUrl: miniMaker.take.value({
+        // bannerUrl: superMaker.take.value({
         //     key: 'images.banner'
         // }),
 
