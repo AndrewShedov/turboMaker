@@ -36,7 +36,7 @@ export function runTurboMaker({
   // start information
   console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads`);
   console.log(`   RAM: ${(totalMemory / (1024 ** 3)).toFixed(1)} GB`);
-  console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString()} documents | ${batchSize.toLocaleString()} batch | ${timeStepMs.toLocaleString()} timeStepMs\n`);
+  console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString("en-US")} documents | ${batchSize.toLocaleString("en-US")} batch | ${timeStepMs.toLocaleString("en-US")} timeStepMs\n`);
   console.log(`🌐 URI:             ${uri}`);
   console.log(`🗄️ Database:        ${db}`);
   console.log(`📂 Collection:      ${collection}\n`);
@@ -81,7 +81,7 @@ export function runTurboMaker({
     const ram = getMemoryUsage().padStart(5, ' ');
 
     clearLines(2);
-    console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString()} / ${numberDocuments.toLocaleString()}`);
+    console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}`);
     console.log(`           CPU: ${cpu}% | RAM: ${ram}%`);
   };
   // /progress bar
@@ -126,7 +126,7 @@ export function runTurboMaker({
           const bar = '\x1b[32m' + '█'.repeat(filledLength) + '\x1b[0m' + '-'.repeat(barLength - filledLength);
           const percent = (progress * 100).toFixed(1).padStart(5, ' ');
 
-          console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString()} / ${numberDocuments.toLocaleString()}\n`);
+          console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}\n`);
 
           const end = performance.now();
           const durationMs = end - start;
@@ -144,7 +144,7 @@ export function runTurboMaker({
           const speed = (numberDocuments / durationSec).toFixed(2);
           const perDocument = (durationMs / numberDocuments).toFixed(5);
 
-          console.log(`✅ Successfully created: ${numberDocuments.toLocaleString()} documents.`);
+          console.log(`✅ Successfully created: ${numberDocuments.toLocaleString("en-US")} documents.`);
           console.log(`⏱️ Creation time: ${formattedDuration}`);
           console.log(`⚡ Speed: ${speed} documents/sec.`);
           console.log(`📊 Average time per document: ${perDocument} ms`);
