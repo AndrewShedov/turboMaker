@@ -146,7 +146,7 @@ export function runTurboMaker({
 
           console.log(`✅ Successfully created: ${numberDocuments.toLocaleString("en-US")} documents.`);
           console.log(`⏱️ Creation time: ${formattedDuration}`);
-          console.log(`⚡ Speed: ${speed} documents/sec.`);
+          console.log(`⚡ Speed: ${speed.toLocaleString("en-US")} documents/sec.`);
           console.log(`📊 Average time per document: ${perDocument} ms`);
 
           setTimeout(() => {
