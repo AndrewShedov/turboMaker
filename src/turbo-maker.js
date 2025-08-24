@@ -141,12 +141,12 @@ export function runTurboMaker({
           formattedDuration += `${milliseconds} ms`;
 
           const durationSec = durationMs / 1000;
-          const speed = (numberDocuments / durationSec).toFixed(2);
+          const speed = (numberDocuments / durationSec).toLocaleString("en-US", { maximumFractionDigits: 2 });
           const perDocument = (durationMs / numberDocuments).toFixed(5);
 
           console.log(`✅ Successfully created: ${numberDocuments.toLocaleString("en-US")} documents.`);
           console.log(`⏱️ Creation time: ${formattedDuration}`);
-          console.log(`⚡ Speed: ${speed.toLocaleString("en-US")} documents/sec.`);
+          console.log(`⚡ Speed: ${speed} documents/sec.`);
           console.log(`📊 Average time per document: ${perDocument} ms`);
 
           setTimeout(() => {
