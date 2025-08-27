@@ -3,8 +3,9 @@ import { performance } from 'perf_hooks';
 import os from 'os';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { MongoClient } from 'mongodb';
 
-export function runTurboMaker({
+export async function runTurboMaker({
   numberThreads,
   numberDocuments,
   batchSize,
@@ -14,36 +15,35 @@ export function runTurboMaker({
   collection,
   generatingDataPath
 }) {
-
   // PC info
   const CPU = os.cpus();
   const maxThreads = CPU.length;
   const cpuModel = CPU[0].model;
   const totalMemory = os.totalmem();
-  // /PC info
 
-  // calculate threads
-  const threads = ((numberThreads > maxThreads) || (numberThreads <= 0) || (typeof numberThreads === 'string')) ? maxThreads : numberThreads;
-  // calculate threads
+  // Calculate threads
+  const threads = Math.min(
+    Math.max(1, Number(numberThreads) || maxThreads),
+    maxThreads
+  );
 
-  // shared buffer
+  // Shared buffer for progress and task allocation
   const sharedBuffer = new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * 2);
   const sharedArray = new Int32Array(sharedBuffer);
-  // /shared buffer
+  Atomics.store(sharedArray, 0, 0); // Generated documents
+  Atomics.store(sharedArray, 1, 0); // Current document index for task allocation
 
   const start = performance.now();
 
-  // start information
+  // Start information
   console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads`);
   console.log(`   RAM: ${(totalMemory / (1024 ** 3)).toFixed(1)} GB`);
   console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString("en-US")} documents | ${batchSize.toLocaleString("en-US")} batch | ${timeStepMs.toLocaleString("en-US")} timeStepMs\n`);
   console.log(`🌐 URI:             ${uri}`);
   console.log(`🗄️ Database:        ${db}`);
   console.log(`📂 Collection:      ${collection}\n`);
-  console.log('\n');
-  // /start information
 
-  // metrics
+  // Metrics
   let prevCpuUsage = process.cpuUsage();
 
   function getCpuUsage() {
@@ -59,7 +59,6 @@ export function runTurboMaker({
     const percent = (used / totalMemory) * 100;
     return percent.toFixed(1);
   }
-  // /metrics
 
   const clearLines = (n = 2) => {
     for (let i = 0; i < n; i++) {
@@ -68,7 +67,7 @@ export function runTurboMaker({
     }
   };
 
-  // progress bar
+  // Progress bar
   const showProgress = () => {
     const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
     const progress = generated / numberDocuments;
@@ -84,33 +83,38 @@ export function runTurboMaker({
     console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}`);
     console.log(`           CPU: ${cpu}% | RAM: ${ram}%`);
   };
-  // /progress bar
 
   const interval = setInterval(showProgress, 1000);
   let finished = 0;
 
-  const documentsPerThread = Math.floor(numberDocuments / threads);
-  const remainder = numberDocuments % threads;
-  let current = 0;
+  // Preload generatingData function
+  const { generatingData } = await import(generatingDataPath);
 
+  // Create a single MongoDB client
+  const client = new MongoClient(uri, {
+    maxPoolSize: threads, // Limit connection pool size
+  });
+  await client.connect();
+  const dbName = client.db(db);
+  const collectionName = dbName.collection(collection);
+
+  // Dynamic task allocation
+  const chunkSize = Math.max(10000, Math.floor(numberDocuments / (threads * 10))); // Dynamic chunk size
+
+  const workers = [];
   for (let i = 0; i < threads; i++) {
-    const extra = i < remainder ? 1 : 0;
-    const from = current;
-    const to = from + documentsPerThread + extra;
-    current = to;
-
     const worker = new Worker(resolve(dirname(fileURLToPath(import.meta.url)), 'turbo-maker-worker.js'));
 
     worker.postMessage({
-      from,
-      to,
       sharedBuffer,
       batchSize,
       timeStepMs,
       uri,
       db,
       collection,
-      generatingDataPath
+      generatingData, // Pass function directly
+      chunkSize,
+      numberDocuments,
     });
 
     worker.on('message', (msg) => {
@@ -118,7 +122,7 @@ export function runTurboMaker({
         finished++;
         if (finished === threads) {
           clearInterval(interval);
-          clearLines(2); // remove the indicator and metrics
+          clearLines(2);
           const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
           const progress = generated / numberDocuments;
           const barLength = 40;
@@ -149,6 +153,7 @@ export function runTurboMaker({
           console.log(`⚡ Speed: ${speed} documents/sec.`);
           console.log(`📊 Average time per document: ${perDocument} ms`);
 
+          client.close();
           setTimeout(() => {
             console.log("👋 Completion of work...");
             process.exit(0);
@@ -158,5 +163,6 @@ export function runTurboMaker({
     });
 
     worker.on('error', (error) => console.error(`❌ Worker error:`, error));
+    workers.push(worker);
   }
 }
