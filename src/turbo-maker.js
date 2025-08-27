@@ -14,18 +14,26 @@ export function runTurboMaker({
   collection,
   generatingDataPath
 }) {
+
+  // PC info
   const CPU = os.cpus();
   const maxThreads = CPU.length;
   const cpuModel = CPU[0].model;
   const totalMemory = os.totalmem();
+  // /PC info
 
+  // calculate threads
   const threads = ((numberThreads > maxThreads) || (numberThreads <= 0) || (typeof numberThreads === 'string')) ? maxThreads : numberThreads;
+  // calculate threads
 
+  // shared buffer
   const sharedBuffer = new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * 2);
   const sharedArray = new Int32Array(sharedBuffer);
+  // /shared buffer
 
   const start = performance.now();
 
+  // start information
   console.log(`🖥️ CPU: ${cpuModel} | ${maxThreads} threads`);
   console.log(`   RAM: ${(totalMemory / (1024 ** 3)).toFixed(1)} GB`);
   console.log(`\n🚀 Start | ${threads} threads | ${numberDocuments.toLocaleString("en-US")} documents | ${batchSize.toLocaleString("en-US")} batch | ${timeStepMs.toLocaleString("en-US")} timeStepMs\n`);
@@ -33,7 +41,9 @@ export function runTurboMaker({
   console.log(`🗄️ Database:        ${db}`);
   console.log(`📂 Collection:      ${collection}\n`);
   console.log('\n');
+  // /start information
 
+  // metrics
   let prevCpuUsage = process.cpuUsage();
 
   function getCpuUsage() {
@@ -49,6 +59,7 @@ export function runTurboMaker({
     const percent = (used / totalMemory) * 100;
     return percent.toFixed(1);
   }
+  // /metrics
 
   const clearLines = (n = 2) => {
     for (let i = 0; i < n; i++) {
@@ -57,6 +68,7 @@ export function runTurboMaker({
     }
   };
 
+  // progress bar
   const showProgress = () => {
     const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
     const progress = generated / numberDocuments;
@@ -72,6 +84,7 @@ export function runTurboMaker({
     console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}`);
     console.log(`           CPU: ${cpu}% | RAM: ${ram}%`);
   };
+  // /progress bar
 
   const interval = setInterval(showProgress, 1000);
   let finished = 0;
@@ -97,8 +110,7 @@ export function runTurboMaker({
       uri,
       db,
       collection,
-      generatingDataPath,
-      totalThreads: threads
+      generatingDataPath
     });
 
     worker.on('message', (msg) => {
@@ -106,7 +118,7 @@ export function runTurboMaker({
         finished++;
         if (finished === threads) {
           clearInterval(interval);
-          clearLines(2);
+          clearLines(2); // remove the indicator and metrics
           const generated = Math.min(Atomics.load(sharedArray, 0), numberDocuments);
           const progress = generated / numberDocuments;
           const barLength = 40;
