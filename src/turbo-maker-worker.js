@@ -42,7 +42,6 @@ parentPort.on('message', async (data) => {
     const collectionName = dbName.collection(collection);
 
     const documentsToInsert = [];
-    const insertPromises = [];  
 
     // single point of reference
     const baseTimestamp = Date.now();
@@ -59,28 +58,16 @@ parentPort.on('message', async (data) => {
       documentsToInsert.push(document);
 
       if (documentsToInsert.length >= batchSize) {
-        const batch = documentsToInsert.slice();  
-         
-        insertPromises.push(
-          collectionName.insertMany(batch, { ordered: false })
-            .then(() => Atomics.add(sharedArray, 0, batch.length))
-            .catch(error => console.error(`❌ Error in insert (worker #${threadId}):`, error))
-        );
-        documentsToInsert.length = 0;  
+        await collectionName.insertMany(documentsToInsert, { ordered: false });
+        Atomics.add(sharedArray, 0, documentsToInsert.length);
+        documentsToInsert.length = 0;
       }
     }
 
     if (documentsToInsert.length > 0) {
-      const batch = documentsToInsert.slice();
-      insertPromises.push(
-        collectionName.insertMany(batch, { ordered: false })
-          .then(() => Atomics.add(sharedArray, 0, batch.length))
-          .catch(error => console.error(`❌ Error in insert (worker #${threadId}):`, error))
-      );
+      await collectionName.insertMany(documentsToInsert, { ordered: false });
+      Atomics.add(sharedArray, 0, documentsToInsert.length);
     }
-
-     
-    await Promise.all(insertPromises);
 
     parentPort.postMessage('done');
   } catch (error) {
