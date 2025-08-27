@@ -1,7 +1,4 @@
-import {
-  parentPort,
-  threadId
-} from 'worker_threads';
+import { parentPort, threadId } from 'worker_threads';
 
 let
   from,
@@ -13,7 +10,8 @@ let
   db,
   collection,
   generatingDataPath,
-  generatingData;
+  generatingData,
+  totalThreads;
 
 parentPort.on('message', async (data) => {
   ({
@@ -25,7 +23,8 @@ parentPort.on('message', async (data) => {
     uri,
     db,
     collection,
-    generatingDataPath
+    generatingDataPath,
+    totalThreads
   } = data);
 
   try {
@@ -36,39 +35,56 @@ parentPort.on('message', async (data) => {
 
     const sharedArray = new Int32Array(sharedBuffer);
 
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, { maxPoolSize: 20 });
     await client.connect();
     const dbName = client.db(db);
     const collectionName = dbName.collection(collection);
 
-    const documentsToInsert = [];
-
-    // single point of reference
     const baseTimestamp = Date.now();
-    // /single point of reference
+
+    let documentsToInsert = [];
+    const pendingInserts = new Set();
+    const MAX_PARALLEL_INSERTS = Math.max(2, totalThreads * 2);
+
+    async function flush() {
+      if (documentsToInsert.length === 0) return;
+
+      const docs = documentsToInsert;
+      documentsToInsert = [];
+
+      const insertPromise = collectionName.insertMany(docs, { ordered: false })
+        .then(() => {
+          Atomics.add(sharedArray, 0, docs.length);
+          pendingInserts.delete(insertPromise);
+        })
+        .catch((err) => {
+          console.error(`❌ Error in worker #${threadId}:`, err.message);
+          pendingInserts.delete(insertPromise);
+        });
+
+      pendingInserts.add(insertPromise);
+
+      if (pendingInserts.size >= MAX_PARALLEL_INSERTS) {
+        await Promise.race(pendingInserts);
+      }
+    }
 
     for (let i = from; i < to; i++) {
-
-      // create date
       const createdAt = new Date(baseTimestamp + i * timeStepMs);
       const updatedAt = createdAt;
-      // /create date
 
       const document = await generatingData({ createdAt, updatedAt });
       documentsToInsert.push(document);
 
       if (documentsToInsert.length >= batchSize) {
-        await collectionName.insertMany(documentsToInsert, { ordered: false });
-        Atomics.add(sharedArray, 0, documentsToInsert.length);
-        documentsToInsert.length = 0;
+        await flush();
       }
     }
 
-    if (documentsToInsert.length > 0) {
-      await collectionName.insertMany(documentsToInsert, { ordered: false });
-      Atomics.add(sharedArray, 0, documentsToInsert.length);
-    }
+    await flush();
+    await Promise.all(pendingInserts);
 
+    await client.close();
     parentPort.postMessage('done');
   } catch (error) {
     console.error(`❌ Error in worker #${threadId}:`, error);
