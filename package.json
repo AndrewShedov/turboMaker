@@ -1,12 +1,28 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.26",
+    "version": "0.1.27",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
         ".": "./src/index.js"
     },
     "type": "module",
+    "keywords": [
+        "mongodb",
+        "data-generator",
+        "speed",
+        "super-speed",
+        "performance",
+        "benchmark",
+        "stress-test",
+        "load-test",
+        "multithreading",
+        "cli",
+        "turbo",
+        "big-data",
+        "fake-data",
+        "bulk-insert"
+    ],
     "author": {
         "name": "Andrew Shedov",
         "url": "https://shedov.top"
