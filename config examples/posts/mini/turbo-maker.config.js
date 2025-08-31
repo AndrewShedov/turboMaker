@@ -1,13 +1,12 @@
 import { superMaker } from 'super-maker';
-import { ObjectId } from 'mongodb';
 
 export const config = {
     uri: 'mongodb://127.0.0.1:27017',
     db: 'crystalTest',
     collection: 'posts',
     numberThreads: 'max',
-    numberDocuments: 1_000_000,
-    batchSize: 10_000,
+    numberDocuments: 10_000,
+    batchSize: 100,
     timeStepMs: 20
 };
 
@@ -16,32 +15,23 @@ export async function generatingData({
     updatedAt
 }) {
 
-    const user = superMaker.take.value({
-        key: 'users'
-    });
-
     const {
         title,
         text,
-        hashtagsFromFullText
     } = superMaker.lorem.fullText.generate({
 
         titleOptions: {
             sentenceMin: 0,
             sentenceMax: 2,
             wordMin: 5,
-            wordMax: 12,
-            hashtagMin: 2,
-            hashtagMax: 2
+            wordMax: 12
         },
 
         textOptions: {
             sentenceMin: 1,
             sentenceMax: 4,
             wordMin: 5,
-            wordMax: 9,
-            hashtagMin: 1,
-            hashtagMax: 3
+            wordMax: 9
         }
     });
 
@@ -49,26 +39,11 @@ export async function generatingData({
 
         title,
         text,
-        hashtags: hashtagsFromFullText,
-
-        views: superMaker.randomNumber({
-            min: 5,
-            max: 1000
-        }),
-
+         
         mainImage: superMaker.take.value({
             key: 'images.avatar'
         }),
 
-        liked: superMaker.take.values({
-            key: 'users',
-            duplicate: false,
-            min: 3,
-            max: 10,
-            reverse: true
-        }),
-
-        user: new ObjectId(user),
         createdAt,
         updatedAt
     };

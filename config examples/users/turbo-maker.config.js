@@ -1,13 +1,13 @@
 import { superMaker } from 'super-maker';
 
 export const config = {
-    numberThreads: 16,
-    numberDocuments: 200,
-    batchSize: 10_000,
-    timeStepMs: 20,
     uri: 'mongodb://127.0.0.1:27017',
     db: 'crystalTest',
-    collection: 'users'
+    collection: 'users',
+    numberThreads: 'max',
+    numberDocuments: 200,
+    batchSize: 10,
+    timeStepMs: 20
 };
 
 export async function generatingData({
