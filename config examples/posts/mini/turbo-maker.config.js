@@ -22,16 +22,16 @@ export async function generatingData({
 
         titleOptions: {
             sentenceMin: 0,
-            sentenceMax: 2,
-            wordMin: 5,
-            wordMax: 12
+            sentenceMax: 1,
+            wordMin: 4,
+            wordMax: 7
         },
 
         textOptions: {
             sentenceMin: 1,
-            sentenceMax: 4,
-            wordMin: 5,
-            wordMax: 9
+            sentenceMax: 12,
+            wordMin: 4,
+            wordMax: 10
         }
     });
 

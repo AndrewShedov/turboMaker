@@ -28,20 +28,20 @@ export async function generatingData({
 
         titleOptions: {
             sentenceMin: 0,
-            sentenceMax: 2,
-            wordMin: 5,
-            wordMax: 12,
-            hashtagMin: 2,
-            hashtagMax: 2
+            sentenceMax: 1,
+            wordMin: 4,
+            wordMax: 7,
+            hashtagMin: 0,
+            hashtagMax: 1
         },
 
         textOptions: {
             sentenceMin: 1,
-            sentenceMax: 4,
-            wordMin: 5,
-            wordMax: 9,
-            hashtagMin: 1,
-            hashtagMax: 3
+            sentenceMax: 12,
+            wordMin: 4,
+            wordMax: 10,
+            hashtagMin: 0,
+            hashtagMax: 2
         }
     });
 
@@ -52,8 +52,8 @@ export async function generatingData({
         hashtags: hashtagsFromFullText,
 
         views: superMaker.randomNumber({
-            min: 5,
-            max: 1000
+            min: 120,
+            max: 3125
         }),
 
         mainImage: superMaker.take.value({
@@ -62,10 +62,8 @@ export async function generatingData({
 
         liked: superMaker.take.values({
             key: 'users',
-            duplicate: false,
             min: 3,
-            max: 10,
-            reverse: true
+            max: 25
         }),
 
         user: new ObjectId(user),
