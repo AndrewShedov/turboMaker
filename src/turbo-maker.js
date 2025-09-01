@@ -141,7 +141,7 @@ export function runTurboMaker({
           formattedDuration += `${milliseconds} ms`;
 
           const durationSec = durationMs / 1000;
-          const speed = (numberDocuments / durationSec).toLocaleString("en-US");
+          const speed = (numberDocuments / durationSec).toLocaleString("en-US", { maximumFractionDigits: 0 });
           const perDocument = (durationMs / numberDocuments).toFixed(5);
 
           console.log(`✅ Successfully created: ${numberDocuments.toLocaleString("en-US")} documents.`);
