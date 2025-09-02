@@ -17,12 +17,13 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 ### Features
 
 1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **130,000 documents/sec** (when using an i5-12600K processor or equivalent). When generating more than 10,000,000 documents, the speed may decrease periodically.
-2. Document distribution across threads considering the remainder.
-3. Generation with custom data schemas through the <code>generatingData</code> function.
-4. Precise <code>createdAt</code>/<code>updatedAt</code> handling with <code>timeStepMs</code>.
-5. <code>Batch</code> inserts for enhanced performance.
-6. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating <code>texts</code>, <code>avatars</code>, <code>dates</code>, <code>emails</code>, <code>arrays</code>, <code>booleans</code>, etc.
-7. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
+2. Select the number of threads to generate, to regulate the load on the processor, or use all threads with the function - <code>'max'</code>.
+3. Document distribution across threads considering the remainder.
+4. Generation with custom data schemas through the <code>generatingData</code> function.
+5. Precise <code>createdAt</code>/<code>updatedAt</code> handling with <code>timeStepMs</code>.
+6. <code>Batch</code> inserts for enhanced performance.
+7. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating <code>texts</code>, <code>avatars</code>, <code>dates</code>, <code>emails</code>, <code>arrays</code>, <code>booleans</code>, etc.
+8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_1.png" width="640" />
 
