@@ -29,6 +29,8 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_1.png" width="640" />
 
+* The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
+
 ### Installation & Usage
 1. Install the package:
 
