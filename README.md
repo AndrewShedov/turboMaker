@@ -81,9 +81,7 @@ timeStepMs: 20
 **batchSize**: accepts a <code>number</code> of documents per batch inserted into the database.
 
 - the larger the batchSize, the fewer requests MongoDB makes, leading to faster insertions.
-
 - however, a very large batchSize can increase memory consumption.
-
 - the optimal value depends on your computer performance and the number of documents being inserted.
 
 **timeStepMs**: accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (and <code>updatedAt</code> is the same as <code>createdAt</code>).
