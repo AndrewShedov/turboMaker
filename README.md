@@ -32,6 +32,7 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
 
 ### Installation & Usage
+
 1. Install the package:
 
 ```bash
@@ -179,6 +180,7 @@ export async function generatingData({
     };
 }
 ```
+
 
 #### The video shows a simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) in operation, using fake data generated with turboMaker and superMaker: <br>
 
