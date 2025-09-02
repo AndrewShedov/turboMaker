@@ -4,7 +4,7 @@
 
 # turboMaker
 
-Super-fast **multi-threaded** document generator for MongoDB, operating through CLI.<br>
+**Super-fast** **multi-threaded** document generator for **MongoDB**, operating through **CLI**.<br>
 It allows you to generate **millions of documents** at **maximum speed**, utilizing **all CPU cores**. <br>
 
 ###  Ideal for
