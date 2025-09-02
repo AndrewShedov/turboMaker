@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.52",
+    "version": "0.1.53",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
@@ -14,7 +14,6 @@
         "super-speed",
         "speed",
         "performance",
-        "benchmark",
         "stress-testing",
         "load-testing",
         "multithreading",
