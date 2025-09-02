@@ -70,19 +70,27 @@ batchSize: 10_000,
 timeStepMs: 20
 ```
 
-**numberThreads**: accepts either a <code>string</code> or a <code>number</code> and sets the number of CPU threads used.
+**numberThreads**
+
+Accepts either a <code>string</code> or a <code>number</code> and sets the number of CPU threads used.
 - for value <code>'max'</code>, all threads are used.
 - if the <code>number</code> exceeds the actual thread count, all threads are used.
 
-**numberDocuments**: accepts a <code>number</code>, specifying how many documents to generate.
+**numberDocuments**
 
-**batchSize**: accepts a <code>number</code> of documents per batch inserted into the database.
+Accepts a <code>number</code>, specifying how many documents to generate.
+
+**batchSize**
+
+Accepts a <code>number</code> of documents per batch inserted into the database.
 
 - the larger the batchSize, the fewer requests MongoDB makes, leading to faster insertions.
 - however, a very large batchSize can increase memory consumption.
 - the optimal value depends on your computer performance and the number of documents being inserted.
 
-**timeStepMs**: accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (and <code>updatedAt</code> is the same as <code>createdAt</code>).
+**timeStepMs**
+
+Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (and <code>updatedAt</code> is the same as <code>createdAt</code>).
 
 - With a value of <code>0</code>, a large number of documents will have the same <code>createdAt</code> due to the high generation speed, especially in multi-threaded mode. To fine-tune the <code>timeStepMs</code>, use [mongoChecker](https://www.npmjs.com/package/mongo-checker) to check for duplicate <code>createdAt</code> fields in the generated documents.
 
