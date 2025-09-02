@@ -98,7 +98,7 @@ Accepts a <code>number</code> and sets the time interval between <code>createdAt
 
 To generate data for documents, you need to define a <code>generatingData</code> function.
 It can be fully customized.<br>
-So with an empty function like:
+With an empty function:
 
 ```js
 export async function generatingData() {}
