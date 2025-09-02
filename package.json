@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.36",
+    "version": "0.1.37",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
@@ -24,7 +24,8 @@
         "turbo",
         "big-data",
         "fake-data",
-        "bulk-insert"
+        "bulk-insert",
+        "mongodb-utils"
     ],
     "author": {
         "name": "Andrew Shedov",
