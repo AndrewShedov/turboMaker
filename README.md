@@ -17,7 +17,7 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 ### Features
 
 1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **130,000 documents/sec** (when using an i5-12600K processor or equivalent). When generating more than 10,000,000 documents, the speed may decrease periodically.
-2. Select the number of threads to generate, to regulate the load on the processor, or use all threads with the function - <code>'max'</code>.
+2. Select the number of threads to generate, to regulate the load on the processor, or use all threads with the function - <code>max</code>.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
 5. Precise <code>createdAt</code>/<code>updatedAt</code> handling with <code>timeStepMs</code>.
