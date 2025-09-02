@@ -177,7 +177,7 @@ export async function generatingData({
 ```
 
 
-#### The video shows a simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) in operation, using fake data generated with turboMaker and superMaker: <br>
+The video shows a simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) in operation, using fake data generated with turboMaker and superMaker: <br>
 
 <p align="center">
 <a href="https://youtu.be/5V4otU4KZaA?t=2">
