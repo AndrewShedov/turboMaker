@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.51",
+    "version": "0.1.52",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
@@ -19,7 +19,6 @@
         "load-testing",
         "multithreading",
         "CPU",
-        "mock",
         "CLI",
         "turbo",
         "big-data",
