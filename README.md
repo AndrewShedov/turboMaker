@@ -90,7 +90,7 @@ Accepts a <code>number</code> of documents per batch inserted into the database.
 
 **timeStepMs**
 
-Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (and <code>updatedAt</code> is the same as <code>createdAt</code>).
+Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (<code>updatedAt</code> is the same as <code>createdAt</code>).
 
 - With a value of <code>0</code>, a large number of documents will have the same <code>createdAt</code> due to the high generation speed, especially in multi-threaded mode. To fine-tune the <code>timeStepMs</code>, use [mongoChecker](https://www.npmjs.com/package/mongo-checker) to check for duplicate <code>createdAt</code> fields in the generated documents.
 
