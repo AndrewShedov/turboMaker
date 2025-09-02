@@ -10,11 +10,8 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 ###  Ideal for
 
 - Preparing large test databases
-
 - Generating fake data
-
 - Stress testing MongoDB
-
 - Performance benchmarking
 
 ### Features
