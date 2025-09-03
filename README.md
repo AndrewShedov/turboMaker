@@ -29,6 +29,14 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 
 The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
 
+### Technologies used
+
+- worker_threads
+- SharedArrayBuffer + Atomics + Int32Array
+- perf_hooks.performance
+- os
+- process
+
 ### Installation & Usage
 
 1. Install the package:
