@@ -22,7 +22,7 @@ It allows you to generate **millions of documents** at **maximum speed**, utiliz
 4. Generation with custom data schemas through the <code>generatingData</code> function.
 5. Precise <code>createdAt</code>/<code>updatedAt</code> handling with <code>timeStepMs</code>.
 6. <code>Batch</code> inserts for enhanced performance.
-7. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating <code>texts</code>, <code>url links (images)</code>, <code>dates</code>, <code>emails</code>, <code>arrays</code>, <code>booleans</code>, etc.
+7. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating <code>texts</code>, <code>url links (for example: images)</code>, <code>dates</code>, <code>emails</code>, <code>arrays</code>, <code>booleans</code>, etc.
 8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_1.png" width="640" />
