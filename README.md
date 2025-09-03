@@ -32,7 +32,7 @@ The screenshot shows the generation of documents filled with [superMaker](https:
 ### Technologies used
 
 - worker_threads
-- SharedArrayBuffer + Atomics + Int32Array
+- SharedArrayBuffer → Int32Array → Atomics
 - perf_hooks.performance
 - os
 - process
