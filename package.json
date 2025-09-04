@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "0.1.65",
+    "version": "0.1.66",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
@@ -14,6 +14,7 @@
         "stress-test-mongodb",
         "multithreaded-db-tool",
         "multithreaded-mongodb-tool",
+        "fast-mongodb-generator",
         "super",
         "super-speed",
         "speed",
