@@ -131,14 +131,21 @@ export function runTurboMaker({
           const end = performance.now();
           const durationMs = end - start;
 
-          const minutes = Math.floor(durationMs / 60000);
+          const hours = Math.floor(durationMs / 3600000);
+          const minutes = Math.floor((durationMs % 3600000) / 60000);
           const seconds = Math.floor((durationMs % 60000) / 1000);
           const milliseconds = Math.floor(durationMs % 1000);
 
           let formattedDuration = '';
-          if (minutes > 0) formattedDuration += `${minutes} min `;
-          if (seconds > 0) formattedDuration += `${seconds} sec `;
-          formattedDuration += `${milliseconds} ms`;
+          if (hours > 0) {
+            formattedDuration = `${hours} hr ${minutes} min`;
+          } else if (minutes > 0) {
+            formattedDuration = `${minutes} min ${seconds} sec ${milliseconds} ms`;
+          } else if (seconds > 0) {
+            formattedDuration = `${seconds} sec ${milliseconds} ms`;
+          } else {
+            formattedDuration = `${milliseconds} ms`;
+          }
 
           const durationSec = durationMs / 1000;
           const speed = (numberDocuments / durationSec).toLocaleString("en-US", { maximumFractionDigits: 0 });
