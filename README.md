@@ -78,8 +78,6 @@ batchSize: 10_000,
 timeStepMs: 20
 ```
 
-**⚠️ All parameters are required - if any is missing, the tool will throw an error.**
-
 **numberThreads**
 
 Accepts either a <code>string</code> or a <code>number</code> and sets the number of CPU threads used.
