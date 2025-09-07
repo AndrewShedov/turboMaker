@@ -16,7 +16,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 
 ### Features
 
-1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **7 seconds** (with configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB). When generating more than 10,000,000 documents, the speed may decrease periodically.
+1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **7 seconds** (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB). When generating more than 10,000,000 documents, the speed may decrease periodically.
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -27,7 +27,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_1.png" width="640" />
 
-The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
+The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js) (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB).
 
 ### Technologies used
 
