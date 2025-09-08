@@ -9,14 +9,14 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 
 ###  Ideal for
 
-- Creating big collections (exceeding 500,000,000 documents)
+- Creating big collections (exceeding 500,000,000 documents, see screenshot below)
 - Generating fake data
 - Stress testing MongoDB
 - Performance benchmarking
 
 ### Features
 
-1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **7 seconds** (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB). When generating more than 10,000,000 documents, the speed may decrease periodically.
+1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **1,000,000 documents** with an average content size is **7 seconds** (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB).
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -25,9 +25,19 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 7. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating random <code>text</code>, <code>hashtags</code>, <code>words</code>, <code>dates</code>, <code>emails</code>, <code>id</code>, <code>url</code>, <code>arrays</code>, <code>booleans</code>, etc.
 8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
 
+Displays CPU and RAM utilization:
+
+<img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_4.png" width="640" />
+
+Generation of 1,000,000 documents in 7 seconds, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js) (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB): 
+
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_1.png" width="640" />
 
-The screenshot shows the generation of documents filled with [superMaker](https://www.npmjs.com/package/super-maker), with this [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js) (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB).
+Generation of 500,000,000 documents in 7 seconds, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js). When generating more than 10,000,000 documents, the speed may decrease periodically due to I/O and MongoDB-overhead (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB):
+
+<img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_3.png" width="640" />
+
+
 
 ### Technologies used
 
