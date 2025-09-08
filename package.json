@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
