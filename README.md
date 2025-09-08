@@ -35,7 +35,7 @@ Generation of 1,000,000 documents in 7 seconds, filled with [superMaker](https:/
 PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
 
 ----------------------------------------
-<a id="screenshot_3"></a>
+<span id="screenshot_3"></span>
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_3.png" width="640" /><br>
 Generation of 500,000,000 documents in 7 hr 10 min, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js). When generating more than 10,000,000 documents, the speed may decrease periodically due to I/O and MongoDB-overhead.<br>
 PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
