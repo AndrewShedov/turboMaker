@@ -7,7 +7,7 @@
 **Super-fast** **multi-threaded** document generator for **MongoDB**, operating through **CLI**.<br>
 Generates **millions of documents** at **maximum speed**, utilizing **all CPU cores**.<br>
 
-###  Ideal for
+###  Suitable for
 
 - Creating big collections (exceeding 500,000,000 documents, see [screenshot](#screenshot_3) below)
 - Generating fake data
