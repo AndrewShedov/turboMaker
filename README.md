@@ -26,7 +26,6 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
 
 ----------------------------------------
-
 <span id="screenshot_1"></span>
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="590" /><br>
