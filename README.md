@@ -26,7 +26,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
 
 ----------------------------------------
-<img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="800" /><br>
+<img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="590" /><br>
 Generation of **1,000,000 documents** in **7 seconds**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
 PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
 
