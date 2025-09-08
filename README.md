@@ -133,7 +133,7 @@ _id: ObjectId('68b2ab141b126e5d6f783d67')
 document: null
 ```
 
-The names:
+The destructured function parameters:
 
 ```js
 export async function generatingData({
@@ -142,7 +142,7 @@ export async function generatingData({
 })
 ```
 
-are required, but you can override them inside <code>return</code>
+are not renamed, but you can override them inside the <code>return</code> statement:
 
 ```js
 return {
