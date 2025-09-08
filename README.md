@@ -24,8 +24,11 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 6. <code>Batch</code> inserts for enhanced performance.
 7. Integration with [superMaker](https://www.npmjs.com/package/super-maker) for generating random <code>text</code>, <code>hashtags</code>, <code>words</code>, <code>dates</code>, <code>emails</code>, <code>id</code>, <code>url</code>, <code>arrays</code>, <code>booleans</code>, etc.
 8. Progress bar in the console with percentage, speed, and statistics, along with other informative logs:
-<span id="screenshot_1"></span>
+
 ----------------------------------------
+
+<span id="screenshot_1"></span>
+
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="590" /><br>
 Generation of **1,000,000 documents** in **7 seconds**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
 PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
