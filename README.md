@@ -10,7 +10,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU co
 ###  Suitable for
 
 - Creating big collections (exceeding **[500,000,000](#screenshot_3) documents**)
-- Generating fake data
+- Generating synthetic data
 - Stress testing MongoDB
 - Performance benchmarking
 

@@ -1,6 +1,6 @@
 {
     "name": "turbo-maker",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "description": "data generator",
     "main": "./src/index.js",
     "exports": {
@@ -27,7 +27,7 @@
         "CLI",
         "turbo",
         "big-data",
-        "fake-data",
+        "synthetic-data",
         "bulk-insert",
         "mongodb-utils"
     ],
