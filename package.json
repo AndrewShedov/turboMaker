@@ -1,7 +1,7 @@
 {
     "name": "turbo-maker",
-    "version": "1.0.25",
-    "description": "data generator",
+    "version": "1.0.26",
+    "description": "Super-fast multi-threaded document generator for MongoDB, operating through CLI.",
     "main": "./src/index.js",
     "exports": {
         ".": "./src/index.js"
