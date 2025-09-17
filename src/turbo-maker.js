@@ -75,10 +75,10 @@ export function runTurboMaker({
     const barLength = 40;
     const filledLength = Math.min(barLength, Math.round(barLength * progress));
     const bar = '\x1b[32m' + '█'.repeat(filledLength) + '\x1b[0m' + '-'.repeat(barLength - filledLength);
-    const percent = (progress * 100).toFixed(1).padStart(5, ' ');
+    const percent = (progress * 100).toFixed(0).padStart(3, ' ');
 
-    const cpu = getCpuUsage().padStart(5, ' ');
-    const ram = getMemoryUsage().padStart(5, ' ');
+    const cpu = getCpuUsage().padStart(3, ' ');
+    const ram = getMemoryUsage().padStart(3, ' ');
 
     clearLines(2);
     console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}`);
@@ -124,7 +124,7 @@ export function runTurboMaker({
           const barLength = 40;
           const filledLength = Math.min(barLength, Math.round(barLength * progress));
           const bar = '\x1b[32m' + '█'.repeat(filledLength) + '\x1b[0m' + '-'.repeat(barLength - filledLength);
-          const percent = (progress * 100).toFixed(1).padStart(5, ' ');
+          const percent = (progress * 100).toFixed(0).padStart(4, ' ');
 
           console.log(`🎁 ${bar} ${percent}% | ${generated.toLocaleString("en-US")} / ${numberDocuments.toLocaleString("en-US")}\n`);
 
