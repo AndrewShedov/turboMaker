@@ -2,7 +2,7 @@
 -----
 Parallel Computation Benchmark
 -----
-Testing the performance of Node.js and CPU in multi-threaded computation tasks, evaluating language efficiency, thread utilization, CPU capabilities, and I/O operations with MongoDB.
+Testing the performance of Node.js in multi-threaded computation tasks, evaluating language efficiency, thread utilization, CPU capabilities, and I/O operations with MongoDB.
 
 Adjust the value - 'generateLongString(100)', to regulate the load.
 -----
