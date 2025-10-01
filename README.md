@@ -218,7 +218,7 @@ Simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) oper
 </p>
 
 
-### A [Rust version](https://crates.io/crates/turbo-maker) of the generator is currently being developed, which performs much faster (up to 7.87x (687%)) according to the results of hybrid (CPU | I/O) testing.
+### A [Rust version](https://crates.io/crates/turbo-maker) of the generator is currently being developed, which performs much faster (up to 7.87x | 687% |) according to the results of hybrid (CPU | I/O) testing.
 
 
 [SHEDOV.TOP](https://shedov.top/) | [CRYSTAL](https://crysty.ru/AndrewShedov) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovchannel) | [VK Video](https://vkvideo.ru/@shedovchannel) | [YouTube](https://www.youtube.com/@AndrewShedov)
