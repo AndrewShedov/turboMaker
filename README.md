@@ -16,7 +16,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 ### Features
 
-1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB).
+1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -30,7 +30,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="590" /><br>
 Generation of **1,000,000 documents** in **7 seconds**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
-PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
+Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
 
 <span id="screenshot_3"></span>
 
@@ -39,7 +39,7 @@ PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_3.png" width="640" /><br>
 Generation of **500,000,000 documents** in **7 hr 10 min**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
 When generating more than 10,000,000 documents, the speed may decrease periodically due to I/O and MongoDB-overhead.<br>
-PC configuration: i5-12600K, DDR4 80GB, SSD 980 PRO 1TB.
+Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
 
 ----------------------------------------
 
@@ -76,11 +76,11 @@ npm i turbo-maker
 npm run turboMaker
 ```
 
-### Explanation of the file structure - turbo-maker.config.js.
+### Explanation of the file structure - turbo-maker.config.js
 
 ### Config options
 
-Required fields must be specified:
+Required fields:
 
 ```js
 uri: 'mongodb://127.0.0.1:27017',
@@ -112,7 +112,7 @@ Accepts a <code>number</code> of documents per batch inserted into the database.
 
 **timeStepMs**
 
-Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (<code>updatedAt</code> is the same as <code>createdAt</code>).
+Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (<code>updatedAt</code> repeats the value <code>createdAt</code>).
 
 - With a value of <code>0</code>, a large number of documents will have the same <code>createdAt</code> due to the high generation speed, especially in multi-threaded mode. To fine-tune the <code>timeStepMs</code>, use [mongoChecker](https://www.npmjs.com/package/mongo-checker) to check for duplicate <code>createdAt</code> fields in the generated documents.
 
@@ -216,5 +216,9 @@ Simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) oper
   <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_2.png" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
 </a>
 </p>
+
+
+### A [Rust version](https://crates.io/crates/turbo-maker) of the generator is currently being developed, which performs much faster (up to 7.87x (687%)) according to the results of hybrid (CPU | I/O) testing.
+
 
 [SHEDOV.TOP](https://shedov.top/) | [CRYSTAL](https://crysty.ru/AndrewShedov) | [Discord](https://discord.gg/ENB7RbxVZE) | [Telegram](https://t.me/ShedovChannel) | [X](https://x.com/AndrewShedov) | [VK](https://vk.com/shedovchannel) | [VK Video](https://vkvideo.ru/@shedovchannel) | [YouTube](https://www.youtube.com/@AndrewShedov)

@@ -4,13 +4,13 @@ Parallel Computation Benchmark
 -----
 Testing the performance of Node.js in multi-threaded computation tasks, evaluating language efficiency, thread utilization, CPU capabilities, and I/O operations with MongoDB.
 
-Adjust the value - 'generateLongString(100)', to regulate the load.
+Adjust the value - 'generateLongString(500)', to regulate the load.
 -----
 */
 
 export const config = {
     uri: 'mongodb://127.0.0.1:27017',
-    db: 'crystalTest',
+    db: 'crystal',
     collection: 'posts',
     numberThreads: 'max',
     numberDocuments: 1_000_000,
@@ -35,6 +35,6 @@ export function generateLongString(length) {
 export async function generatingData() {
 
     return {
-        complexString: generateLongString(100),
+        complexString: generateLongString(500),
     };
 }
