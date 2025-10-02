@@ -56,6 +56,6 @@ export async function generatingData({
             })
         },
         createdAt,
-        updatedAt,
+        updatedAt
     };
 }
