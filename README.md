@@ -16,7 +16,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 ### Features
 
-1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
+1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -30,7 +30,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/gif.gif" width="590" /><br>
 Generation of **1,000,000 documents** in **7 seconds**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
-Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
+PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
 
 <span id="screenshot_3"></span>
 
@@ -39,7 +39,7 @@ Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 
 <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_3.png" width="640" /><br>
 Generation of **500,000,000 documents** in **7 hr 10 min**, filled with [superMaker](https://www.npmjs.com/package/super-maker), with the following [content](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
 When generating more than 10,000,000 documents, the speed may decrease periodically due to I/O and MongoDB-overhead.<br>
-Benchmark system configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
+PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD.
 
 ----------------------------------------
 
