@@ -16,7 +16,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 ### Features
 
-1. **Multi-threading** - each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
+1. **Multi-threading** — each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -66,7 +66,7 @@ npm i turbo-maker
   "turboMaker": "turbo-maker"
 }
 ```
-3. In the root of the project, create a file - [turbo-maker.config.js](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
+3. In the root of the project, create a file — [turbo-maker.config.js](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
 
 You can start with a simple [lite](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/lite/turbo-maker.config.js) version.
 
@@ -78,7 +78,7 @@ You can start with a simple [lite](https://github.com/AndrewShedov/turboMaker/bl
 npm run turboMaker
 ```
 
-### Explanation of the file structure - turbo-maker.config.js
+### Explanation of the file structure — turbo-maker.config.js
 
 ### Config options
 
