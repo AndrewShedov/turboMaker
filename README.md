@@ -66,8 +66,7 @@ npm i turbo-maker
   "turboMaker": "turbo-maker"
 }
 ```
-3. In the root of the project, create a file — [turbo-maker.config.js](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).
-
+3. In the root of the project, create a file — [turbo-maker.config.js](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/posts/turbo-maker.config.js).<br>
 You can start with a simple [lite](https://github.com/AndrewShedov/turboMaker/blob/main/config%20examples/lite/turbo-maker.config.js) version.<br>
 [Examples](https://github.com/AndrewShedov/turboMaker/tree/main/config%20examples) of various configurations.
 
