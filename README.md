@@ -16,7 +16,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 
 ### Features
 
-1. **Multi-threading** — each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
+1. **Multithreading** — each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
 2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
@@ -114,7 +114,7 @@ Accepts a <code>number</code> of documents per batch inserted into the database.
 
 Accepts a <code>number</code> and sets the time interval between <code>createdAt</code> timestamps (<code>updatedAt</code> repeats the value <code>createdAt</code>).
 
-- With a value of <code>0</code>, a large number of documents will have the same <code>createdAt</code> due to the high generation speed, especially in multi-threaded mode. To fine-tune the <code>timeStepMs</code>, use [mongoChecker](https://www.npmjs.com/package/mongo-checker) to check for duplicate <code>createdAt</code> fields in the generated documents.
+- With a value of <code>0</code>, a large number of documents will have the same <code>createdAt</code> due to the high generation speed, especially in multithreaded mode. To fine-tune the <code>timeStepMs</code>, use [mongoChecker](https://www.npmjs.com/package/mongo-checker) to check for duplicate <code>createdAt</code> fields in the generated documents.
 
 ### function generatingData
 
