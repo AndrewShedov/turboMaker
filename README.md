@@ -15,7 +15,7 @@ Generates **millions of documents** at **maximum speed**, utilizing **all CPU th
 ### Features
 
 1. **Multithreading** — each thread inserts documents in parallel. The generation speed of **[1,000,000](#screenshot_1) documents** with an average content size is **7 seconds** (PC configuration: Intel i5-12600K, 80GB DDR4 RAM, Samsung 980 PRO 1TB SSD).
-2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to** <code>max</code> to utilize all available threads.
+2. **Specify the number of threads** for data generation to adjust CPU load, **or set it to <code>max</code>** to utilize all available threads.
 3. Document distribution across threads considering the remainder.
 4. Generation with custom data schemas through the <code>generatingData</code> function.
 5. Precise <code>createdAt</code>/<code>updatedAt</code> handling with <code>timeStepMs</code>.
