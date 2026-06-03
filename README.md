@@ -206,8 +206,9 @@ export async function generatingData({
 }
 ```
 
+<br>
 
-Simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) operation using synthetic data generated with turboMaker and superMaker:<br>
+### [Simulation](https://shedov.top/simulation-of-crystal-v2-0-operation/) of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) operation using synthetic data generated with turboMaker and [superMaker](https://www.npmjs.com/package/super-maker):<br>
 
 <p align="center">
 <a href="https://youtu.be/5V4otU4KZaA?t=2">
