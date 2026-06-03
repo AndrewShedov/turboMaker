@@ -211,7 +211,7 @@ Simulation of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) oper
 
 <p align="center">
 <a href="https://youtu.be/5V4otU4KZaA?t=2">
-  <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_2.png" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
+  <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_2.1.png" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
 </a>
 </p>
 
