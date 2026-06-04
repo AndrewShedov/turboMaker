@@ -210,6 +210,7 @@ export async function generatingData({
 
 ### [Simulation](https://shedov.top/simulation-of-crystal-v2-0-operation/) of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) operation using synthetic data generated with turboMaker and [superMaker](https://www.npmjs.com/package/super-maker). Additionally, [mongoCollector](https://www.npmjs.com/package/mongo-collector) and [mongoChecker](https://www.npmjs.com/package/mongo-checker) are used here:<br>
 
+
 <p align="center">
 <a href="https://youtu.be/5V4otU4KZaA?t=2">
   <img src="https://raw.githubusercontent.com/AndrewShedov/turboMaker/refs/heads/main/assets/screenshot_2.2.png" style="width: 100%; max-width: 100%;" alt="CRYSTAL v1.0 features"/>
