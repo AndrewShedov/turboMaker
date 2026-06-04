@@ -219,6 +219,7 @@ export async function generatingData({
 
 
 ### A [Rust version](https://crates.io/crates/turbo-maker) of the generator is currently being developed, which performs much faster (up to 7.87x | 687%) according to the results of hybrid (CPU | I/O) testing.
+
 <br>
 
 [![SHEDOV.TOP](https://img.shields.io/badge/SHEDOV.TOP-black?style=for-the-badge)](https://shedov.top/) 
