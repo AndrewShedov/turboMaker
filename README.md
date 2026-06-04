@@ -208,7 +208,7 @@ export async function generatingData({
 
 <br>
 
-### [Simulation](https://shedov.top/simulation-of-crystal-v2-0-operation/) of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) operation using synthetic data generated with turboMaker and [superMaker](https://www.npmjs.com/package/super-maker):<br>
+### [Simulation](https://shedov.top/simulation-of-crystal-v2-0-operation/) of [CRYSTAL v2.0](https://shedov.top/about-the-crystal-project/) operation using synthetic data generated with turboMaker, [superMaker](https://www.npmjs.com/package/super-maker), [mongoCollector](https://www.npmjs.com/package/mongo-collector), and [mongoChecker](https://www.npmjs.com/package/mongo-checker):<br>
 
 <p align="center">
 <a href="https://youtu.be/5V4otU4KZaA?t=2">
