@@ -11,7 +11,7 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write # Дает право генерировать OIDC-токен для беспарольной авторизации и зеленой галочки
+      id-token: write # Grants the right to generate an OIDC token for passwordless authorization and a green checkmark
 
     steps:
       - name: Checkout code
